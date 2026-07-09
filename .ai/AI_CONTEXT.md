@@ -223,3 +223,14 @@ Improve only:
 - architecture
 - performance
 - modularity
+
+Desktop UX Rule
+
+The cashier should immediately see at least:
+
+- 3 product columns
+- 2 complete product rows
+
+without scrolling.
+
+The product grid is the primary workspace.

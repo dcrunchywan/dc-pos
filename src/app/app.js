@@ -2,14 +2,6 @@ import { renderPosWorkspace } from '../modules/pos/posWorkspace.js'
 
 export function mountApp(rootElement) {
     rootElement.innerHTML = `
-        <header class="mobile-header-bar" aria-label="Mobile status">
-            <strong>D'CRUNCHYWAN POS</strong>
-            <div class="mobile-status">
-                <span>Online</span>
-                <b>v2.3.0</b>
-            </div>
-        </header>
-
         <div class="app-shell">
             <aside class="app-sidebar" aria-label="Sidebar">
                 <div class="brand-area">
@@ -57,6 +49,19 @@ export function mountApp(rootElement) {
             </aside>
 
             <main class="app-main">
+                <header class="mobile-header-bar" aria-label="Mobile status">
+                    <strong>D'CRUNCHYWAN POS</strong>
+                    <div class="mobile-status">
+                        <span>Online</span>
+                        <b>v2.3.0</b>
+                    </div>
+                    <button class="mobile-menu-button" type="button" aria-label="Open menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </header>
+
                 ${renderPosWorkspace()}
             </main>
 

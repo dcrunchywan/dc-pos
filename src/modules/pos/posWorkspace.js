@@ -1,22 +1,25 @@
-const categoryLevelOne = ['Semua', 'Ayam', 'Minuman', 'Mamah', 'Paket', 'Snack']
-const categoryLevelTwo = ['Semua Sub', 'Geprek', 'Original', 'Es Teh', 'Kopi']
+const categoryLevelOne = [
+    'Semua',
+    'Ayam',
+    'Minuman',
+    'Mamah',
+    'Paket',
+    'Snack'
+];
 
-const dummyProducts = [
-    { name: 'Ayam Geprek Original', category: 'Ayam', price: 'Rp 15.000', icon: 'AG' },
-    { name: 'Ayam Geprek Keju', category: 'Ayam', price: 'Rp 18.000', icon: 'AK' },
-    { name: 'Ayam Crispy', category: 'Ayam', price: 'Rp 13.000', icon: 'AC' },
-    { name: 'Nasi Ayam Paket', category: 'Paket', price: 'Rp 20.000', icon: 'NP' },
-    { name: 'Mie Geprek', category: 'Mamah', price: 'Rp 14.000', icon: 'MG' },
-    { name: 'Nasi Goreng Mamah', category: 'Mamah', price: 'Rp 17.000', icon: 'NG' },
-    { name: 'Es Teh Manis', category: 'Minuman', price: 'Rp 5.000', icon: 'ET' },
-    { name: 'Es Jeruk', category: 'Minuman', price: 'Rp 7.000', icon: 'EJ' },
-    { name: 'Kopi Susu', category: 'Minuman', price: 'Rp 8.000', icon: 'KS' },
-    { name: 'Nutrisari Dingin', category: 'Minuman', price: 'Rp 6.000', icon: 'ND' },
-    { name: 'Kentang Goreng', category: 'Snack', price: 'Rp 10.000', icon: 'KG' },
-    { name: 'Sosis Crispy', category: 'Snack', price: 'Rp 9.000', icon: 'SC' },
-]
+import { productRepository } from "../../services/productRepository.js";
+import { posStore } from "../../stores/posStore.js";
+import { formatCurrency } from "../../utils/currency.js";
+
+const products = productRepository.getAll();
+
+posStore.setProducts(products);
+
 
 export function renderPosWorkspace() {
+
+    const { filteredProducts } = posStore.getState();
+
     return `
         <header class="pos-toolbar" aria-label="POS controls">
             <div class="pos-toolbar-row">
@@ -40,23 +43,16 @@ export function renderPosWorkspace() {
         </header>
 
         <section class="pos-products" aria-label="Daftar produk">
-            <nav class="subcategory-chip-row" aria-label="Sub kategori">
-                ${categoryLevelTwo.map((category, index) => `
-                    <button class="subcategory-chip ${index === 0 ? 'is-active' : ''}" type="button">${category}</button>
-                `).join('')}
-            </nav>
-
             <div class="product-grid">
-                ${dummyProducts.map((product) => `
+                ${posStore.getState().filteredProducts.map((product) => `
                     <article class="product-card">
                         <span class="product-action" aria-hidden="true">*</span>
                         <div class="product-media" aria-hidden="true">
                             <span>${product.icon}</span>
                         </div>
                         <div class="product-body">
-                            <span class="product-category">${product.category}</span>
                             <h3>${product.name}</h3>
-                            <p>${product.price}</p>
+                            <p>${formatCurrency(product.price)}</p>
                         </div>
                     </article>
                 `).join('')}
