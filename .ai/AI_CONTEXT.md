@@ -142,3 +142,84 @@ Pilih solusi yang:
 - lebih mudah dipelihara,
 - lebih mudah dipahami,
 - lebih cepat digunakan kasir.
+
+
+Every completed task must include:
+
+- Task Report
+- Build Result
+- Risks
+- Next Recommendation
+
+Never end with only "Done".
+
+
+Avoid fixed pixel layouts whenever possible.
+
+Prefer:
+
+- clamp()
+- minmax()
+- fr
+- %
+- CSS variables
+
+Use media queries only when the layout itself changes.
+
+### Mobile UX
+
+Desktop and Mobile are allowed to have different layouts.
+
+Do not force desktop layout into mobile.
+
+Preserve the operational workflow instead.
+
+Payment actions must remain immediately accessible on mobile devices.
+
+## UX Philosophy
+
+This application is not a responsive website.
+
+It is an operational POS system.
+
+Different devices may have different layouts if it improves cashier speed and usability.
+
+Never force desktop UX into mobile.
+
+Always prioritize operational workflow.
+---
+Legacy UI
+
+Location:
+legacy/appscript/
+
+Purpose:
+
+The legacy AppScript UI is the visual reference for the new POS.
+
+Preserve the cashier workflow.
+
+Improve code quality.
+
+Avoid unnecessary redesign.
+
+
+## Golden UI Rule
+
+The legacy AppScript UI is the product.
+
+Do not redesign it.
+
+Preserve:
+
+- proportions
+- spacing
+- navigation
+- cashier workflow
+
+Improve only:
+
+- maintainability
+- architecture
+- performance
+- modularity

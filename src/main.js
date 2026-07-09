@@ -1,7 +1,4 @@
-import './style.css'
+import './styles/base.css'
+import { mountApp } from './app/app.js'
 
-document.querySelector('#app').innerHTML = `
-<div id="app-shell">
-    <h1>D'CrunchyWan POS v3</h1>
-</div>
-`
+mountApp(document.querySelector('#app'))
